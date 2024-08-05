@@ -1,12 +1,9 @@
-require("dotenv").config();
-const express = require("express");
 
 const teamModel=require('../Models/team.model');
 const timeCardModel = require("../Models/timeCard.model");
-const teamRouter = express.Router();
 
 // ADD
-teamRouter.post('/addteam',async(req,res)=>{
+const addTeam = async(req,res)=>{
     const teams= new teamModel(req.body)
     try {
         const savedteam=await teams.save()
@@ -15,10 +12,10 @@ teamRouter.post('/addteam',async(req,res)=>{
     } catch (error) {
         res.status(400).send(error.message)
     }
-})
+}
 
 // GET ALL
-teamRouter.get('/',async(req,res)=>{
+const getAllTeam = async(req,res)=>{
     try {
         const teams=await teamModel.find()
         res.status(200).send(teams)
@@ -26,10 +23,10 @@ teamRouter.get('/',async(req,res)=>{
         res.status(400).send(error.message)
     }
 
-})
+}
 
 // GET ONE
-teamRouter.get('/:id',async(req,res)=>{
+const getTeam = async(req,res)=>{
     const {id}=req.params
     // console.log(id)
     try {
@@ -41,12 +38,12 @@ teamRouter.get('/:id',async(req,res)=>{
     } catch (error) {
         res.status(404).send(error)
     }
-})
+}
 
 
     // DELETE
 
-    teamRouter.delete('/:id',async(req,res)=>{
+    const deleteTeam = async(req,res)=>{
         const {id}=req.params
         
         try {
@@ -58,10 +55,10 @@ teamRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(404).send(error)
         }
-    })
+    }
 
     // ADD TIME CARD
-    teamRouter.post('/addTime',async(req,res)=>{
+    const addTime = async(req,res)=>{
         const timeCard= new timeCardModel(req.body)
         try {
             const savedcard=await timeCard.save()
@@ -70,18 +67,18 @@ teamRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(400).send(error.message)
         }
-    })
+    }
 
     // GET ALL ATTENDACE
-    teamRouter.get('/attendace',async(req,res)=>{
+    const getAttendance = async(req,res)=>{
         try {
             const timeCard=await timeCardModel.find()
             res.status(200).send(timeCard)
         } catch (error) {
             res.status(400).send(error.message)
         }
-    })
+    }
 
 
 
-module.exports={teamRouter}
+module.exports={getAllTeam,addTeam,getTeam,deleteTeam,addTime,getAttendance}

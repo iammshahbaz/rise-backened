@@ -5,6 +5,10 @@ const { connection } = require("./config/db");
 const { clientRouter } = require("./routes/clientRoutes");
 const { ticketRouter } = require("./routes/ticketRoutes");
 const { projectRouter } = require("./routes/projectRoutes");
+const { leadRouter } = require("./routes/leadRoutes");
+const { subRouter } = require("./routes/subRoutes");
+const { teamRouter } = require("./routes/teamRoutes");
+const { saleRouter } = require("./routes/saleRoutes");
 require("dotenv").config();
 
 
@@ -16,6 +20,10 @@ app.use("/tasks",taskRouter)
 app.use("/clients", clientRouter)
 app.use("/tickets",ticketRouter)
 app.use("/projects",projectRouter)
+app.use("/leads",leadRouter)
+app.use("/subscription", subRouter)
+app.use("/teams", teamRouter)
+app.use("/sales", saleRouter)
 
 app.get("/",async(req,res)=>{
     res.send("hello")

@@ -1,12 +1,10 @@
-require("dotenv").config();
-const express = require("express");
 
 const Invoice=require('../Models/invoice.model');
 const ItemModel = require("../Models/items.model");
-const salesRouter = express.Router();
+
 
 // ADD
-salesRouter.post('/addsales',async(req,res)=>{
+const addSales = async(req,res)=>{
     const sales= new Invoice(req.body)
     try {
         const savedsales=await sales.save()
@@ -15,10 +13,10 @@ salesRouter.post('/addsales',async(req,res)=>{
     } catch (error) {
         res.status(400).send(error.message)
     }
-})
+}
 
 // GET ALL
-salesRouter.get('/',async(req,res)=>{
+const getAllSales = async(req,res)=>{
     try {
         const sales=await Invoice.find()
         res.status(200).send(sales)
@@ -26,10 +24,10 @@ salesRouter.get('/',async(req,res)=>{
         res.status(400).send(error.message)
     }
 
-})
+}
 
 // GET ONE
-salesRouter.get('/:id',async(req,res)=>{
+const getSale = async(req,res)=>{
     const {id}=req.params
     try {
         const sales=await Invoice.findById({_id:id});
@@ -40,9 +38,9 @@ salesRouter.get('/:id',async(req,res)=>{
     } catch (error) {
         res.status(404).send(error)
     }
-})
+}
     // UPDATE
-    salesRouter.patch('/:id',async(req,res)=>{
+    const updateSale = async(req,res)=>{
         const {id}=req.params
         try {
             const sales=await Invoice.findByIdAndUpdate({_id:id},req.body)
@@ -53,11 +51,11 @@ salesRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(404).send(error)
         }
-    })
+    }
 
     // DELETE
 
-    salesRouter.delete('/:id',async(req,res)=>{
+    const deleteSale = async(req,res)=>{
         const {id}=req.params
         try {
             const sales=await Invoice.findByIdAndDelete({_id:id})
@@ -68,11 +66,11 @@ salesRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(404).send(error)
         }
-    })
+    }
 
     // SEARCH & FILTER
 
-    salesRouter.get('/search',async(req,res)=>{
+    const searchSale = async(req,res)=>{
         const { Client, Project} = req.query;
         const filter = {};
     
@@ -85,10 +83,10 @@ salesRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(400).send(error);
         }
-    })
+    }
 
     // ADD ITEMS
-    salesRouter.post('/Additems',async(req,res)=>{
+    const addItem = async(req,res)=>{
         const items= new ItemModel(req.body)
         try {
             const savedItems=await items.save()
@@ -97,10 +95,10 @@ salesRouter.get('/:id',async(req,res)=>{
         } catch (error) {
             res.status(400).send(error.message)
         }
-    })
+    }
 
 // GET ALL ITEMS
-    salesRouter.get('/items',async(req,res)=>{
+    const getAllItems = async(req,res)=>{
         try {
             const items=await ItemModel.find()
             res.status(200).send(items)
@@ -108,11 +106,11 @@ salesRouter.get('/:id',async(req,res)=>{
             res.status(400).send(error.message)
         }
     
-    })
+    }
 
 // GET ONE ITEM
 
-salesRouter.get('/items/:id',async(req,res)=>{
+const getItem = async(req,res)=>{
     const {id}=req.params
     try {
         const items=await ItemModel.findById({_id:id});
@@ -123,11 +121,11 @@ salesRouter.get('/items/:id',async(req,res)=>{
     } catch (error) {
         res.status(404).send(error)
     }
-})
+}
 
 // DELETE ONE ITEM
 
-salesRouter.delete('/items/:id',async(req,res)=>{
+const deleteItem = async(req,res)=>{
     const {id}=req.params
     try {
         const items=await ItemModel.findByIdAndDelete({_id:id})
@@ -138,7 +136,7 @@ salesRouter.delete('/items/:id',async(req,res)=>{
     } catch (error) {
         res.status(404).send(error)
     }
-})
+}
 
 
-module.exports={salesRouter}
+module.exports={addSales,getAllSales,getSale,searchSale,deleteSale, updateSale,getAllItems,getItem,addItem,deleteItem}
