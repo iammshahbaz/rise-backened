@@ -1,6 +1,6 @@
 const express = require("express");
 
-const leadModel = require('../Models/lead.model');
+const leadModel = require('../model/lead.model')
 // const leadRouter = express.Router();
 
 // ADD

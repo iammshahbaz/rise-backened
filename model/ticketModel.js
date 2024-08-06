@@ -22,6 +22,7 @@ const ticketSchema = mongoose.Schema({
     assignedTo: {
         type: String,
         enum: ["John Doe", "Mark Thomas", "Michael Wood", "Sara Ann", "Richard Gray"],
+        default: "Michael Wood"
     },
     lastActivity: {
         type: Date,

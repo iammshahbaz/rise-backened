@@ -1,6 +1,6 @@
 
-const Invoice=require('../Models/invoice.model');
-const ItemModel = require("../Models/items.model");
+const Invoice=require('../model/invoice.model');
+const ItemModel = require("../model/items.model");
 
 
 // ADD

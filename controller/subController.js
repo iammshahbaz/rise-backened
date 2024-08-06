@@ -1,4 +1,4 @@
-const SubscriptionModel=require('../Models/subscription.model')
+const SubscriptionModel=require('../model/subscription.model')
 
 
 // ADD

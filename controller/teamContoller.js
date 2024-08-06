@@ -1,6 +1,6 @@
 
-const teamModel=require('../Models/team.model');
-const timeCardModel = require("../Models/timeCard.model");
+const teamModel=require('../model/team.model');
+const timeCardModel = require("../model/timeCard.model");
 
 // ADD
 const addTeam = async(req,res)=>{
