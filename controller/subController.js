@@ -36,7 +36,7 @@ const addSub = async(req,res)=>{
                 { Type: searchRegex}
             ].filter(filter => Object.values(filter).some(value => value !== undefined));
         }
-        const subs = await ClientModule.find(filters).sort(sortCriteria);
+        const subs = await SubscriptionModel.find(filters).sort(sortCriteria);
         res.send({ subs });
     } catch (error) {
         res.status(400).send(error.message)
