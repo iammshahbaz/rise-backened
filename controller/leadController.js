@@ -105,4 +105,4 @@ const getLead = async(req,res)=>{
     // }
 
 
-module.exports={createLead,getAllLeads, getLead , updateLead , searchLead,deleteLead}
+module.exports={createLead,getAllLeads, getLead , updateLead ,deleteLead}
